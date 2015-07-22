@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.oterman.oa.dao.PersonDao;
 import com.oterman.oa.domain.Person;
@@ -14,6 +15,8 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Resource(name="personDaoImpl")
 	private PersonDao personDao;
+	
+	@Transactional
 	public void savePerson(Person person) {
 		this.personDao.savePerson(person);
 	}

@@ -32,7 +32,9 @@
 			<property name="sessionFactory" ref="sessionFactory"></property>
 		</bean>
 		
-		<tx:advice id="tx" transaction-manager="transactionManager">
+		
+		<!-- 使用xml配置事务处理 -->
+	<!-- 	<tx:advice id="tx" transaction-manager="transactionManager">
 			<tx:attributes>
 				<tx:method name="save*" read-only="false"/>
 				<tx:method name="update*" read-only="false"/>
@@ -43,6 +45,11 @@
 		<aop:config>
 			<aop:pointcut expression="execution(* com.oterman.oa.service.impl.PersonServiceImpl.*(..))" id="xx"/>
 			<aop:advisor advice-ref="tx" pointcut-ref="xx"/>
-		</aop:config>
+		</aop:config> -->
+		
+		<!-- 声明使用注解来处理事务 -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+		
+		
 
 </beans>

@@ -6,7 +6,30 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-2.5.xsd
         
-	    <context:annotation-config></context:annotation-config>
+	     <!--启动类及属性注解扫描  -->
+        <context:component-scan base-package="com.oterman.oa"></context:component-scan>
 	    
 5.完成PersonDao PersonDaoImpl,PersonService,PersonServiceImpl，需要在PersonDaoImpl中引入HibernateTemplate
 6.在applicationContext-db.xml中配置事务
+	(1).基于XML配置：
+			<bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+		
+		<tx:advice id="tx" transaction-manager="transactionManager">
+			<tx:attributes>
+				<tx:method name="save*" read-only="false"/>
+				<tx:method name="update*" read-only="false"/>
+				<tx:method name="*" read-only="true"/>
+			</tx:attributes>
+		</tx:advice>
+		
+		<aop:config>
+			<aop:pointcut expression="execution(* com.oterman.oa.service.impl.PersonServiceImpl.*(..))" id="xx"/>
+			<aop:advisor advice-ref="tx" pointcut-ref="xx"/>
+		</aop:config>
+		
+	(2)基于注解配置：
+	<!-- 声明使用注解来处理事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	在需要事务的方法上使用@Transactional注解
