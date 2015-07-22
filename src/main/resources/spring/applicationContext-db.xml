@@ -41,7 +41,7 @@
 		</tx:advice>
 		
 		<aop:config>
-			<aop:pointcut expression="execusion(* com.oterman.oa.dao.impl.PersonDaoImpl.*(..) )" id="xx"/>
+			<aop:pointcut expression="execution(* com.oterman.oa.service.impl.PersonServiceImpl.*(..))" id="xx"/>
 			<aop:advisor advice-ref="tx" pointcut-ref="xx"/>
 		</aop:config>
 
