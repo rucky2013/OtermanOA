@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<!-- 
+		数据库的用户名
+	-->
+	<property name="connection.username">root</property>
+	<!-- 
+		密码
+	-->
+	<property name="connection.password">root</property>
+	<!-- 
+		url
+	-->
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/s2sh_oa
+	</property>
+	<!-- 
+		方言
+		告诉hibernate,要操作的数据库是mysql
+	-->
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<!-- 
+		导入驱动
+	-->
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<!-- 
+		validate
+		只检查结构
+		update
+		检查结构，更新或者创建表
+		create
+		每次启动hibernate时，都要创建表
+		create-drop
+		启动hibernate时创建表，当hibernate关闭时，删除表
+	-->
+	<property name="hbm2ddl.auto">update</property>
+	<property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+
+	<mapping resource="com/oterman/oa/domain/Person.hbm.xml" />
+
+
+</session-factory>
+</hibernate-configuration>
