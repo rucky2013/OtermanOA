@@ -5,6 +5,8 @@
         xmlns:context="http://www.springframework.org/schema/context"
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-2.5.xsd
-	    
+        
 	    <context:annotation-config></context:annotation-config>
-5.
+	    
+5.完成PersonDao PersonDaoImpl,PersonService,PersonServiceImpl，需要在PersonDaoImpl中引入HibernateTemplate
+6.在applicationContext-db.xml中配置事务
