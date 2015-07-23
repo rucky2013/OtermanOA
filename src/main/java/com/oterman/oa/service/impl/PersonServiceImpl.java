@@ -7,18 +7,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.oterman.oa.dao.PersonDao;
+import com.oterman.oa.dao.base.BaseDao;
 import com.oterman.oa.domain.Person;
 import com.oterman.oa.service.PersonService;
+import com.oterman.oa.service.base.impl.BaseServiceImpl;
 
 @Service("personService")
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService {
 	
+	//引入baseDao
 	@Resource(name="personDaoImpl")
-	private PersonDao personDao;
+	private BaseDao personDao;
 	
-	@Transactional
-	public void savePerson(Person person) {
-		this.personDao.savePerson(person);
+	/**
+	 * 实现父类的方法，将运行中的baseDao交给父类；
+	 */
+	@Override
+	public BaseDao<Person> getBaseDao() {
+		return personDao;
 	}
 
 }

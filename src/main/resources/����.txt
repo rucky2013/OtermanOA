@@ -33,3 +33,31 @@
 	<!-- 声明使用注解来处理事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	在需要事务的方法上使用@Transactional注解
+	
+7.公共Dao，Service的抽取，见类图，然后测试
+	各个类的组成
+	  1、BaseDao
+	        对crud的接口进行了抽象设计
+	  2、BaseDaoImpl
+	        对crud做一个公共的实现
+	  3、PersonDao
+	        是一个具体的dao
+	  4、PersonDaoImpl
+	        是一个具体的dao的实现
+	  5、BaseService
+	        对crud进行声明
+	  6、BaseServiceImpl
+	        调用baseDao,对BaseService进行crud的实现
+	  7、PersonService
+	  8、PersonServiceImpl
+	  
+	  在BaseDaoImpl中完成完成基本的crud操作，需要获取参数化类型的参数：ParameterizedType,obj.getGenericSuperClass,pt.getActul
+	 ParameterizedType superClass=(ParameterizedType) this.getClass().getGenericSuperclass();//得到参数化的父类，即BaseDaoImpl<T>
+	 this.entityClass=(Class) superClass.getActualTypeArguments()[0];//得到具体的具体的类型
+	 
+	 在BaseServiceImpl中完成基本的逻辑，但是完成逻辑需要传入baseDao的实现类的对象，这是在运行时候才能得到，
+	 为此我们可以提供一个抽象方法获取运行时的baseDao的实现对象。然后利用baseDao的实现对象完成crud操作。
+	 
+8.
+
+	
