@@ -58,6 +58,19 @@
 	 在BaseServiceImpl中完成基本的逻辑，但是完成逻辑需要传入baseDao的实现类的对象，这是在运行时候才能得到，
 	 为此我们可以提供一个抽象方法获取运行时的baseDao的实现对象。然后利用baseDao的实现对象完成crud操作。
 	 
-8.
+8.Struts2配置文件;测试listPerson转到web-inf/jsp/person/list.jsp
+	ServletActionContext.getContext.put("list",personList);
+	在jsp页面中：
+	<s:iterator value="#list">
+		<tr>
+			<td><s:property value="pid"/></td>	
+			<td><s:property value="pname"/></td>	
+			<td><s:property value="pgender"/></td>	
+			<td><s:a action="personAction_update?id=%{pid}">修改</s:a></td>
+		</tr>
+	</s:iterator>
+	
+
+	
 
 	
