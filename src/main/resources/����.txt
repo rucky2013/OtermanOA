@@ -70,6 +70,8 @@
 		</tr>
 	</s:iterator>
 	
+9.Department,User,Role类及hbm文件，部门和User一对多双边关联，user和role多对多,测试建表
+	
 
 	
 

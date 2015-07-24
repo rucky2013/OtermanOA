@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.oterman.oa.dao.base.BaseDao;
 import com.oterman.oa.service.base.BaseService;
-
+/**
+ * BaseService的实现类，在该类中实现具体的逻辑代码
+ */
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	/**
 	 * 需要得到baseDao的实现对象；

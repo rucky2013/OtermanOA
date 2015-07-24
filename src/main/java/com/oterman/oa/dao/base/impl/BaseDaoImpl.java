@@ -10,9 +10,12 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.oterman.oa.dao.base.BaseDao;
 
-
+/**
+ * 公共接口的实现类，由于该类不能直接new对象，故可以设置为抽象的。
+ * 该类实现了基本的增删改查操作；基于泛型技术；
+ * 
+ */
 public class BaseDaoImpl<T> implements BaseDao<T> {
-	
 	
 	//引入HibernateTemplate
 	@Resource(name = "hibernateTemplate")
@@ -23,11 +26,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 */
 	private Class entityClass;
 	public BaseDaoImpl(){
-		ParameterizedType superClass=(ParameterizedType) this.getClass().getGenericSuperclass();//得到参数化的父类，即BaseDaoImpl<T>
-		this.entityClass=(Class) superClass.getActualTypeArguments()[0];//得到类型参数的值 Class com.oterman.oa.domain.Person
-		System.out.println(superClass);//com.oterman.oa.dao.base.impl.BaseDaoImpl<com.oterman.oa.domain.Person>
-		System.out.println(superClass.getOwnerType());//null
-		System.out.println(superClass.getRawType());//class com.oterman.oa.dao.base.impl.BaseDaoImpl
+		//得到参数化的父类，即BaseDaoImpl<T>，this对象代表的是继承了该类的new出来的对象，比如PersonDaoImpl
+		ParameterizedType superClass=(ParameterizedType) this.getClass().getGenericSuperclass();
+		//得到类型参数的值 Class com.oterman.oa.domain.Person，及T的值
+		this.entityClass=(Class) superClass.getActualTypeArguments()[0];
+		
+//		System.out.println(superClass);//com.oterman.oa.dao.base.impl.BaseDaoImpl<com.oterman.oa.domain.Person>
+//		System.out.println(superClass.getOwnerType());//null
+//		System.out.println(superClass.getRawType());//class com.oterman.oa.dao.base.impl.BaseDaoImpl
 
 	}
 
