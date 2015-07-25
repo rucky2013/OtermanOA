@@ -71,6 +71,14 @@
 	</s:iterator>
 	
 9.Department,User,Role类及hbm文件，部门和User一对多双边关联，user和role多对多,测试建表
+
+10.DepartmentDao,DepartmentService,测试saveEntry(department)
+
+11.DepartmentAction  showAllDepartments() 测试
+
+12.完成department的前端list.jsp,update.jsp,add.jsp的显示
+	list.jsp  查询数据库，存入map栈中， 在jsp页面迭代
+	update  根据id查询，存入对象栈回显，提交到更新
 	
 
 	
