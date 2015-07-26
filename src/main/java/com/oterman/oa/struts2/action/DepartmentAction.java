@@ -36,11 +36,29 @@ public class DepartmentAction extends BaseAction<Department> {
 	}
 	
 	public String update(){
-		
+		//获取数据,保存起来
+		Department model = this.getModel();
+		this.departmentSerivce.updateEntry(model);
 		
 		return "action2action";
 	}
 	
+	public String delete(){
+		Department model = this.getModel();
+		departmentSerivce.deleteEntry(model.getDid());
+		return "action2action";
+	}
+	
+	public String addUI(){
+		
+		return "addUI";
+	}
+	
+	public String add(){
+		Department model = this.getModel();
+		this.departmentSerivce.saveEntry(model);
+		return "action2action";
+	}
 	
 
 }
