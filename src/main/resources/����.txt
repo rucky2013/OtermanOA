@@ -79,7 +79,14 @@
 12.完成department的前端list.jsp,update.jsp,add.jsp的显示
 	list.jsp  查询数据库，存入map栈中， 在jsp页面迭代
 	update  根据id查询，存入对象栈回显，提交到更新
+
+13.用户模块，UserDao ,UserService,
+	查询所有用户并显示出来：from User u left outer join fetch u.department left outer join fetch u.roles,list.jsp,迭代显示
 	
+14.用户模块：添加用户，addUI()  获取department和role，存入map栈中，然后在add.jsp显示
+	add.jsp表单提交到add()方法，属性驱动和模型驱动相结合，did,rids
+	userService：addUser(user,did,rids),完善user,为该方法添加事务
+
 
 	
 

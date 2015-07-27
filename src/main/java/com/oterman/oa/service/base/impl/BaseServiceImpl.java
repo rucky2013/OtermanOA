@@ -44,4 +44,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 		return this.getBaseDao().getEleById(id);
 	}
 
+	public Collection<T> createQuery(String hql) {
+		return this.getBaseDao().createQuery(hql);
+	}
+
 }

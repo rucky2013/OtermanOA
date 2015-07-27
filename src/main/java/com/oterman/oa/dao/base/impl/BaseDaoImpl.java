@@ -19,7 +19,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	
 	//引入HibernateTemplate
 	@Resource(name = "hibernateTemplate")
-	private HibernateTemplate hibernateTemplate;
+	protected  HibernateTemplate hibernateTemplate;
 	
 	/**
 	 * 获取参数化类型的参数，由于实际是由一个类继承BaseDaoImpl后new出对象，所以根据实际的对象来获取类型参数的值。
@@ -58,6 +58,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public Collection<T> queryAll() {
 //		this.hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from "+entityClass.getSimpleName());
 		return this.hibernateTemplate.find("from "+this.entityClass.getSimpleName());
+	}
+
+	public Collection<T> createQuery(String hql) {
+		return this.hibernateTemplate.find(hql);
 	}
 
 }

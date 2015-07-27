@@ -8,5 +8,7 @@ public class SpringInit {
 	static{
 		applicationContext=new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 	}
+	
+	
 
 }

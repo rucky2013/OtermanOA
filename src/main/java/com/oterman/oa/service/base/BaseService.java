@@ -12,4 +12,6 @@ public interface BaseService<T> {
 	public void deleteEntry(Serializable id);
 	public Collection<T> queryAll();
 	public T getEleById(Serializable id);
+	
+	public Collection<T> createQuery(String hql);
 }
