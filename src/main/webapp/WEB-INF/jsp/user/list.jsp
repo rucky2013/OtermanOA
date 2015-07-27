@@ -53,7 +53,8 @@
 							</s:iterator></td>
 						<td>
 							<s:a action="userAction_delete.action?uid=%{uid}">删除</s:a>
-							<s:a action="userAction_updateUI.action?uid=%{uid}">修改权限</s:a>
+							<s:a action="userAction_updateUI.action?uid=%{uid}">修改</s:a>
+							<s:a action="userAction_updateUI.action?uid=%{uid}">权限控制</s:a>
 						</td>
 					</tr>
 				</s:iterator>

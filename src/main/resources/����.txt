@@ -86,6 +86,10 @@
 14.用户模块：添加用户，addUI()  获取department和role，存入map栈中，然后在add.jsp显示
 	add.jsp表单提交到add()方法，属性驱动和模型驱动相结合，did,rids
 	userService：addUser(user,did,rids),完善user,为该方法添加事务
+	
+15.用户模块：修改用户，updateUI,获取department，获取roles集合，提取did,rids，赋值给action的属性，将user对象放入到对象栈中
+			跳转到update.jsp，进行数据的回显
+			删除用户，根据传入的id进行删除，hibernate会自动的维护关系。
 
 
 	

@@ -31,8 +31,15 @@ public class TestUser extends SpringInit {
 	
 	@Test
 	public void testAddUser(){
-		
-		
+	
 	}
 	
+	
+	@Test
+	public void tesdGetUser(){
+		UserService userService=(UserService) this.applicationContext.getBean("userService");
+		User user=userService.getEleById(1L);
+		
+		System.out.println(user.getUsername());
+	}
 }

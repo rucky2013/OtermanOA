@@ -8,6 +8,8 @@
    			<result name="listAction">WEB-INF/jsp/user/list.jsp</result>
    			<result name="addUI">WEB-INF/jsp/user/add.jsp</result>
    			<result name="action2action" type="redirectAction">userAction_showAll.action</result>
+   			<result name="updateUI">WEB-INF/jsp/user/update.jsp</result>
+   			
    		</action>
    </package>
   

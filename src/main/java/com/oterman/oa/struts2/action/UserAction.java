@@ -88,5 +88,49 @@ public class UserAction extends BaseAction<User>{
 	
 		return "action2action";
 	}
+	
+	/**
+	 * 跳转到更新页面，数据回显
+	 */
+	public String updateUI(){
+		User user = this.userService.getEleById(this.getModel().getUid());
+		this.did=user.getDepartment().getDid();
+		
+		this.rids=new Long[user.getRoles().size()];
+		int index=0;
+		for (Role role : user.getRoles()) {
+			rids[index++]=role.getRid();
+		}
+		
+		ActionContext.getContext().getValueStack().push(user);
+		
+		Collection<Department> dList = this.departmentService.queryAll();
+		Collection<Role> rList = this.roleService.queryAll();
+		
+		ActionContext.getContext().put("dList", dList);
+		ActionContext.getContext().put("rList", rList);
+		
+		return "updateUI";
+	}
+	
+	/**
+	 * 处理更新逻辑
+	 */
+	public String update(){
+		//user,did,rids
+		this.userService.updateUser(this.getModel(), did, rids);
+		
+		return "action2action";
+	}
+	
+	/**
+	 * 删除
+	 * @return
+	 */
+	public String delete(){
+		this.userService.deleteEntry(this.getModel().getUid());
+		
+		return "action2action";
+	}
 		
 }

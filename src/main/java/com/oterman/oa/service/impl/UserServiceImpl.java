@@ -55,4 +55,21 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		
 	}
 
+	/**
+	 * 处理更新逻辑
+	 */
+	@Transactional
+	public void updateUser(User model, Long did, Long[] rids) {
+		Department department = this.departmentDao.getEleById(did);
+		model.setDepartment(department);
+		
+		Set<Role> set=new HashSet<Role>();
+		for (int i = 0; i < rids.length; i++) {
+			set.add(this.roleDao.getEleById(rids[i]));
+		}
+		model.setRoles(set);
+		
+		userDao.updateEntry(model);
+	}
+
 }
