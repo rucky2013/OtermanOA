@@ -90,6 +90,32 @@
 15.用户模块：修改用户，updateUI,获取department，获取roles集合，提取did,rids，赋值给action的属性，将user对象放入到对象栈中
 			跳转到update.jsp，进行数据的回显
 			删除用户，根据传入的id进行删除，hibernate会自动的维护关系。
+			
+16.权限模块: Privilege ,Role ,User ，给用户分配角色，给角色分配权限，用户和角色是多对多，角色和权限也是多对多，
+		完善Role类，创建Privilege类，Privilege.hbm.xml，测试建表
+
+17.zTree菜单树:自定义js事件：
+	  <script>
+	  	$().ready(function(){
+			$(".content").unbind("俊哥好帅")
+			$(".content").bind("俊哥好帅",function(event,obj){
+				alert("这是自定义事件的内容"+obj.a+obj.b)
+			})
+			
+			$(".content").unbind("click");
+			$(".content").bind("click",function(){
+				//触发事件
+				$(this).trigger("俊哥好帅",{a:"haah",b:6})
+			})
+			
+		})
+		
+	  </script>
+  
+18.MenuItem类代表一个菜单项，MenuItemDao,MenuItemService,向数据库中添加数据
+
+19.Strtus2与ajax的整合，struts-json-plugin.jar包  
+
 
 
 	

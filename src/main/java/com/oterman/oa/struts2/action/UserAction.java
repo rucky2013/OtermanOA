@@ -1,5 +1,6 @@
 package com.oterman.oa.struts2.action;
 
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,7 @@ import com.oterman.oa.service.UserService;
 @Controller("userAction")
 @Scope("prototype")
 public class UserAction extends BaseAction<User>{
+	
 	
 	@Resource(name="userService")
 	private UserService userService;

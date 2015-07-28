@@ -9,6 +9,7 @@
 		</id>
 		<property name="description"></property>
 		<property name="name"></property>
+		<property name="pid" type="long" length="5"></property>
 		
 		<!--描述user和role多对多关系  -->
 		<set name="users" table="user_role">

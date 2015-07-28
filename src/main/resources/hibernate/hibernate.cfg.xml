@@ -22,7 +22,9 @@
 		方言
 		告诉hibernate,要操作的数据库是mysql
 	-->
-	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
 	<!-- 
 		导入驱动
 	-->
@@ -47,6 +49,8 @@
 	<mapping resource="com/oterman/oa/domain/Department.hbm.xml" />
 	<mapping resource="com/oterman/oa/domain/Role.hbm.xml" />
 	<mapping resource="com/oterman/oa/domain/User.hbm.xml" />
+	<mapping resource="com/oterman/oa/domain/Privilege.hbm.xml" />
+	<mapping resource="com/oterman/oa/domain/MenuItem.hbm.xml" />
 
 
 </session-factory>

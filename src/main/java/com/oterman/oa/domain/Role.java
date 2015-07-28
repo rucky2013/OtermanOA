@@ -5,9 +5,25 @@ import java.util.Set;
 
 public class Role implements Serializable{
 	private Long rid;
+	private Long pid;//父节点id
 	private String name;
 	private String description;
 	private Set<User> users;//角色和员工多对多
+	private Set<Privilege> privileges;//角色与权限是多对多的关系
+	
+	
+	public Long getPid() {
+		return pid;
+	}
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
+	public Set<Privilege> getPrivileges() {
+		return privileges;
+	}
+	public void setPrivileges(Set<Privilege> privileges) {
+		this.privileges = privileges;
+	}
 	public Long getRid() {
 		return rid;
 	}
