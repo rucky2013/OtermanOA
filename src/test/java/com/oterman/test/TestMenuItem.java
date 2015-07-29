@@ -15,4 +15,11 @@ public class TestMenuItem extends SpringInit{
 		Collection<MenuItem> list = menuItemService.queryAll();
 		System.out.println(list.size());
 	}
+	
+	@Test
+	public void testGetByPid(){
+		MenuItemService menuItemService=(MenuItemService) this.applicationContext.getBean("menuItemService");
+		Collection<MenuItem> menuItemByPid = menuItemService.getMenuItemByPid(1L);
+		System.out.println(menuItemByPid);
+	}
 }

@@ -14,12 +14,28 @@ import com.oterman.oa.service.MenuItemService;
 @Controller("menuItemAction")
 @Scope("prototype")
 public class MenuItemAction extends BaseAction<MenuItem>{
-
+	
 	@Resource(name="menuItemService")
 	private MenuItemService menuItemService;
 	
+	private String pid;
+
+	public String  getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+	
 	public String getAll(){
 		Collection<MenuItem> list = this.menuItemService.queryAll();
+		ActionContext.getContext().getValueStack().push(list);
+		return SUCCESS;
+	}
+	
+	public String getSubItems(){
+		Collection<MenuItem> list = this.menuItemService.getMenuItemByPid(this.getModel().getPid());
 		ActionContext.getContext().getValueStack().push(list);
 		return SUCCESS;
 	}

@@ -9,6 +9,8 @@ public class MenuItem implements Serializable {
 	private String name;//树上的每一个节点的名称
 	private Boolean isParent;//是否为父节点
 	private String icon;//图片路径
+	
+	
 	public Long getMid() {
 		return mid;
 	}
