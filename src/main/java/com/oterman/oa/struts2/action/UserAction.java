@@ -36,8 +36,17 @@ public class UserAction extends BaseAction<User>{
 	 */
 	private Long did;
 	private Long[] rids;
+	//获取选中的item的id所组成的字符串，如“1，2，3”
+	private String checkedIds;
 	
-	
+	public String getCheckedIds() {
+		return checkedIds;
+	}
+
+	public void setCheckedIds(String checkedIds) {
+		this.checkedIds = checkedIds;
+	}
+
 	public Long getDid() {
 		return did;
 	}
@@ -133,6 +142,22 @@ public class UserAction extends BaseAction<User>{
 		this.userService.deleteEntry(this.getModel().getUid());
 		
 		return "action2action";
+	}
+	
+	/**
+	 * 点击角色树的保存按钮时，提交选中的角色的id到该方法；
+	 * @return
+	 */
+	public String updateUserWithRole(){
+		String[] strs=this.checkedIds.split(",");
+		rids=new Long[strs.length];
+		for(int i=0;i<strs.length;i++){
+			rids[i]=Long.parseLong(strs[i]);
+		}
+		Long uid=this.getModel().getUid();
+		this.userService.updateUserWithRoles(uid, rids);
+		
+		return SUCCESS;
 	}
 		
 }

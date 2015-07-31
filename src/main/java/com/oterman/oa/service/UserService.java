@@ -8,4 +8,6 @@ public interface UserService extends BaseService<User> {
 	
 	public void updateUser(User model,Long did,Long[] rids);
 	
+	public void updateUserWithRoles(Long uid,Long[] rids);
+	
 }

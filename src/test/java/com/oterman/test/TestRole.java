@@ -1,5 +1,7 @@
 package com.oterman.test;
 
+import java.util.Collection;
+
 import org.junit.Test;
 
 import com.oterman.oa.domain.Role;
@@ -15,5 +17,15 @@ public class TestRole extends SpringInit{
 		role.setDescription("滚蛋人员专属部门");
 		roleService.saveEntry(role);
 		
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testQueryByUid(){
+		RoleService roleService=(RoleService) this.applicationContext.getBean("roleService");
+		Collection<Role> roles = roleService.getAllRolesByUid(6l);
+		System.out.println(roles);
 	}
 }

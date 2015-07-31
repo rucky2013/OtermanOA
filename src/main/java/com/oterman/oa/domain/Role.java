@@ -11,7 +11,16 @@ public class Role implements Serializable{
 	private Set<User> users;//角色和员工多对多
 	private Set<Privilege> privileges;//角色与权限是多对多的关系
 	
+	private boolean checked;
 	
+	
+	
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
 	public Long getPid() {
 		return pid;
 	}

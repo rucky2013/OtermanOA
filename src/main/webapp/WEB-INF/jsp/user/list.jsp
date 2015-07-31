@@ -8,6 +8,8 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="js/jquery-ztree-2.5.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath}/js/user_role.js"></script>
 
 
@@ -48,9 +50,10 @@
 			<tbody id="TableData" class="dataContainer" datakey="userList">
 				<s:iterator value="#list">
 					<tr align=center valign=middle id=TableTitle>
+						<s:hidden name="uid"></s:hidden>
 						<td width="100"><s:property value="username" /></td>
 						<td width="100"><s:property value="department.name" /></td>
-						<td><s:iterator value="roles">
+						<td type="roles"><s:iterator value="roles">
 								<s:property value="name" />
 							</s:iterator>
 						</td>
@@ -79,7 +82,7 @@
 			<div class="ItemBlock_Title1">
 				<img border="0" width="4" height="7"
 					src="${pageContext.request.contextPath}/css/blue/images/item_point.gif" />
-				<s:label id="userImage"></s:label>
+				<s:label id="userName"></s:label>
 			</div>
 			<div class="ItemBlock_Title1" id="privilegeTitle"
 				style="display: none;">
@@ -99,7 +102,7 @@
 							<tr align="LEFT" valign="MIDDLE" id="TableTitle">
 								<td width="300px" style="padding-left: 7px;">
 									<!-- 如果把全选元素的id指定为selectAll，并且有函数selectAll()，就会有错。因为有一种用法：可以直接用id引用元素 -->
-									<input type="checkbox" id="allchecked"  /> <label
+									<input type="checkbox" id="allchecked"  disabled="true" /> <label
 									for="cbSelectAll">全选</label></td>
 							</tr>
 						</thead>
@@ -109,11 +112,12 @@
 							<tr class="TableDetail1">
 								<!-- 显示权限树 -->
 								<td>
-									<ul id='roleTree' class="tree"></ul> <img id="loading"
-									src="css/images/loading.gif" /></td>
+									<ul id='roleTree' class="tree"></ul>
+									<!-- 当权限树还未加载出来的时候，显示正在加载的图片 -->
+									<img  id="loading" src="${pageContext.request.contextPath }/css/images/loading.gif">
+								</td>
 							</tr>
 						</tbody>
-					
 					</table>
 				</div>
 			</div>

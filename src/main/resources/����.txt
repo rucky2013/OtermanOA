@@ -116,6 +116,46 @@
 
 19.Strtus2与ajax的整合，struts-json-plugin.jar包  
 
+20.完成加载菜单树，子节点从利用ajax动态从数据库获取；
+
+21.角色修改链接，设置用户的角色。用户与角色是多对多的关系，user,role，当点击角色修改的时候，出现一颗角色树。
+
+22.在设置角色树的时候，树未加载出来的时候，全选的checkbox应该不可以用，而且应该现在loading图片，树加载成功以后，loading图片不显示，全选可用。
+
+23.处理全选复选框和item的关系：点击全选时，所有item全选；取消全选时，所有item不选；点击item时，判断是否所有item被选中，再根据所有item被选中的状态来设置全选复选框的状态；
+
+24.角色树，更新user和role的关系，前台：ajax提交rids以及uid；后台：处理这两者之间的关系！
+
+25.角色树回显:给node设置checked属性，就能被选中了；
+	根据uid得到user的所有的role，然后再role的集合中找到对应的role，设置role的checked=true；
+	根据uid查询uid对应的role，返回装有role的集合：from Role r inner join fetch r.users u where u.uid=?
+	多表查询sql语句:
+	
+	SELECT r.* ,u.username FROM role r 
+		INNER JOIN user_role ur 
+		ON ur.`rid`=r.`rid` AND ur.uid=5 
+		INNER JOIN USER u  
+		ON ur.`uid`=u.`uid`
+	
+	
+	SELECT r.* ,u.username ,d.name FROM role r 
+		INNER JOIN user_role ur ON ur.`rid`=r.`rid` AND ur.uid=5 
+		INNER JOIN USER u  ON ur.`uid`=u.`uid` 
+		INNER JOIN department d ON d.did=u.`did`
+	
+			+-----+------------------+----------+------+----------+--------+
+		| rid | description      | name     | pid  | username | name   |
+		+-----+------------------+----------+------+----------+--------+
+		|   1 | 负责领班重任                 | 领班员        |    0 | 管理员        | 研
+		发部      |
+		|   3 | 负责交流沟通                | 机关参谋       |    0 | 管理员        | 研
+		发部      |
+		|   4 | 滚蛋人员专属部门               | 滚蛋部         |    0 | 管理员        |
+		 研发部      |
+		+-----+------------------+----------+------+----------+--------+
+		
+26.点击角色树种保存按钮的同时，更新table中相应的位置。
+	给响应的td做上标记
 
 
 	

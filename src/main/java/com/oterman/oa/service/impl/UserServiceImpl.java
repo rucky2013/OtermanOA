@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.oterman.oa.dao.DepartmentDao;
 import com.oterman.oa.dao.RoleDao;
+import com.oterman.oa.dao.UserDao;
 import com.oterman.oa.dao.base.BaseDao;
 import com.oterman.oa.domain.Department;
 import com.oterman.oa.domain.Role;
@@ -24,7 +25,7 @@ import com.oterman.oa.service.base.impl.BaseServiceImpl;
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
 	@Resource(name="userDao")
-	private BaseDao userDao;
+	private UserDao userDao;
 	
 	@Resource(name="departmentDao")
 	private DepartmentDao departmentDao;
@@ -70,6 +71,24 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		model.setRoles(set);
 		
 		userDao.updateEntry(model);
+	}
+
+	/**
+	 * 更新user的role
+	 */
+	@Transactional
+	public void updateUserWithRoles(Long uid, Long[] rids) {
+		User user=this.userDao.getEleById(uid);
+		
+		Set<Role> set=new HashSet<Role>();
+		for (int i = 0; i < rids.length; i++) {
+			set.add(this.roleDao.getEleById(rids[i]));
+		}
+		
+		user.setRoles(set);
+		
+		this.saveEntry(user);
+		
 	}
 
 }
