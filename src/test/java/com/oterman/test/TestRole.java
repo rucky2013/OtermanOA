@@ -2,6 +2,8 @@ package com.oterman.test;
 
 import java.util.Collection;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import com.oterman.oa.domain.Role;
@@ -28,4 +30,14 @@ public class TestRole extends SpringInit{
 		Collection<Role> roles = roleService.getAllRolesByUid(6l);
 		System.out.println(roles);
 	}
+	
+	@Test
+	public void testGetAllRoleWithPrivilege(){
+		RoleService roleService=(RoleService) this.applicationContext.getBean("roleService");
+		Collection<Role> list= roleService.getAllRolesWithPrivilege();
+		System.out.println(list);
+		
+	}
+	
+	
 }

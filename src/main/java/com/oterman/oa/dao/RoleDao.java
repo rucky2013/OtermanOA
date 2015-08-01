@@ -8,4 +8,6 @@ import com.oterman.oa.domain.Role;
 public interface RoleDao extends BaseDao<Role> {
 	public Collection<Role> getAllRolesByUid(Long uid);
 
+	public Collection<Role> getAllRolesWithPrivilege();
+
 }

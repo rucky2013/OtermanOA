@@ -21,11 +21,14 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
 					role.setChecked(true);
 					break;
 				}
-				
 			}
 		}
 		
 		return allRoles;
+	}
+
+	public Collection<Role> getAllRolesWithPrivilege() {
+		return this.hibernateTemplate.find("from Role r left join fetch r.privileges order by r.rid");
 	}
 
 }

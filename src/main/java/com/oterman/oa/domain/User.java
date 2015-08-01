@@ -3,7 +3,7 @@ package com.oterman.oa.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-public class User implements Serializable{
+public class User implements Serializable,Comparable<User>{
 	private Long uid;
 	private String username;
 	private String password;
@@ -61,6 +61,10 @@ public class User implements Serializable{
 	}
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	
+	public int compareTo(User user) {
+		return this.uid>user.getUid()?1:(this.uid==user.getUid()?0:-1);
 	}
 	
 }

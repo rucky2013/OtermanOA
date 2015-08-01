@@ -3,6 +3,8 @@ package com.oterman.oa.domain;
 import java.io.Serializable;
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 public class Privilege implements Serializable {
 	private Long id;
 	private Long pid;
@@ -10,6 +12,33 @@ public class Privilege implements Serializable {
 	private String description;
 	private String type;
 	private Set<Role> roles;
+	
+	private boolean checked;
+	
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+	private String icon;
+	private boolean isParent;
+	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	
+	public void setIsParent(boolean flag){
+		this.isParent=flag;
+	}
+	
+	public boolean isIsParent(){
+		return this.isParent;
+	}
+	
 	
 	public Long getId() {
 		return id;
@@ -41,6 +70,11 @@ public class Privilege implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
+	/**
+	 * @JSON(serialize=false)  在将该对象序列化成json格式实，忽略掉该对象。
+	 * @return
+	 */
+	@JSON(serialize=false)
 	public Set<Role> getRoles() {
 		return roles;
 	}

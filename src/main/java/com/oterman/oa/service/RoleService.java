@@ -12,4 +12,8 @@ public interface RoleService extends BaseService<Role> {
 	 */
 	public Collection<Role> getAllRolesByUid(Long uid);
 	
+	public Collection<Role> getAllRolesWithPrivilege();
+	
+	public void buildRoleAndPrivileges(Long rid,Long[] ids);
+	
 }

@@ -3,10 +3,9 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
-	<package name="role" extends="json-default" namespace="/">
-		<action name="roleAction_*" method="{1}"  class="roleAction">
+	<package name="privilege" extends="json-default" namespace="/">
+		<action name="privilegeAction_*" method="{1}"  class="privilegeAction">
 			<result type="json"></result>
-			<result name="listRoles">WEB-INF/jsp/role/list.jsp</result>
 		</action>
 	</package>
 

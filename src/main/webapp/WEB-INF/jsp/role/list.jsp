@@ -10,12 +10,12 @@
 %>
 <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript" src="js/jquery-ztree-2.5.js"></script>
-<script language="javascript" src="${pageContext.request.contextPath}/js/user_role.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/js/role_privilege.js"></script>
 
 
 <html>
 <head>
-<title>用户列表</title>
+<title>角色列表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
@@ -27,7 +27,7 @@
 				<!--页面标题-->
 				<img border="0" width="13" height="13"
 					src="${pageContext.request.contextPath}/css/images/title_arrow.gif" />
-				用户管理
+				角色管理
 			</div>
 			<div id="Title_End"></div>
 		</div>
@@ -39,10 +39,10 @@
 			<!-- 表头-->
 			<thead>
 				<tr align=center valign=middle id=TableTitle>
-					<td width="50">id</td>
-					<td width="100">用户名</td>
-					<td width="100">所属部门</td>
-					<td>所属岗位</td>
+					<td width="60">id</td>
+					<td width="100">名称</td>
+					<td>描述</td>
+					<td>所属权限</td>
 					<td>相关操作</td>
 				</tr>
 			</thead>
@@ -51,17 +51,18 @@
 			<tbody id="TableData" class="dataContainer" datakey="userList">
 				<s:iterator value="#list">
 					<tr align=center valign=middle id=TableTitle>
-						<s:hidden name="uid"></s:hidden>
-						<td width="50"><s:property value="uid" /></td>
-						<td width="100"><s:property value="username" /></td>
-						<td width="100"><s:property value="department.name" /></td>
-						<td type="roles"><s:iterator value="roles">
+						<s:hidden name='rid'></s:hidden>
+						<td width="100" type='rid'><s:property value="rid" /></td>
+						<td width="100" type="name"><s:property value="name" /></td>
+						<td width="100" type="description"><s:property value="description" /></td>
+						<td type="privileges">
+							<s:iterator value="privileges">
 								<s:property value="name" />
 							</s:iterator>
 						</td>
-						<td><s:a action="userAction_delete.action?uid=%{uid}">删除</s:a>
-							<s:a action="userAction_updateUI.action?uid=%{uid}">修改</s:a> 
-							<a>角色修改</a>
+						<td><s:a action="#">删除</s:a>
+							<s:a action="#">修改</s:a> 
+							<a>权限修改</a>
 					</tr>
 				</s:iterator>
 
@@ -69,15 +70,15 @@
 		</table>
 
 
-		
+		<!-- 其他功能超链接 -->
 		<div id="TableTail">
 			<div id="TableTail_inside">
-				<a href="userAction_addUI.action"><img
+				<a href="#addUI.action"><img
 					src="${pageContext.request.contextPath}/css/images/createNew.png" />
 				</a>
 			</div>
 		</div>
-
+		
 		<!-- 树 -->
 		<div class="ItemBlock_Title1" id="userTitle" style="display: none;">
 			<!-- 信息说明 -->
@@ -90,7 +91,7 @@
 				style="display: none;">
 				<div class="ItemBlock_Title1">
 					<img border="0" width="4" height="7"
-						src="${pageContext.request.contextPath}/css/blue/images/item_point.gif" />选择角色
+						src="${pageContext.request.contextPath}/css/blue/images/item_point.gif" />选择权限
 				</div>
 			</div>
 
@@ -114,7 +115,7 @@
 							<tr class="TableDetail1">
 								<!-- 显示权限树 -->
 								<td>
-									<ul id='roleTree' class="tree"></ul>
+									<ul id='privilegeTree' class="tree"></ul>
 									<!-- 当权限树还未加载出来的时候，显示正在加载的图片 -->
 									<img  id="loading" src="${pageContext.request.contextPath }/css/images/loading.gif">
 								</td>
@@ -125,11 +126,11 @@
 			</div>
 			<!-- 表单操作 -->
 			<div id="InputDetailBar">
-				<image id="saveRole"
+				<image id="savePrivliege"
 					src="${pageContext.request.contextPath}/css/images/save.png" />
 			</div>
-
 		</div>
+
 </div>
 </body>
 </html>

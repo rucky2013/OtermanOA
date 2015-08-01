@@ -4,6 +4,7 @@ package com.oterman.oa.struts2.action;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
@@ -65,9 +66,8 @@ public class UserAction extends BaseAction<User>{
 
 	public String showAll(){
 		Collection<User> list= this.userService.queryAll();
-		Set set=new HashSet<User>(list);
 		
-		ActionContext.getContext().put("list", set);
+		ActionContext.getContext().put("list", new TreeSet<User>(list));
 		return "listAction";
 	}
 

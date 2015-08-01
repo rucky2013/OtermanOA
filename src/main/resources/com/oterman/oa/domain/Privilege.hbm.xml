@@ -12,6 +12,8 @@
 		<property name="name" length="100"></property>
 		<property name="pid" type="long" length="5"></property>
 		<property name="type" length="20"></property>
+		<property name="icon"></property>
+		<property name="isParent" type="boolean"></property>
 		
 		<set name="roles" table="role_privilege">
 			<key>

@@ -136,6 +136,7 @@
 		ON ur.`rid`=r.`rid` AND ur.uid=5 
 		INNER JOIN USER u  
 		ON ur.`uid`=u.`uid`
+		
 	
 	
 	SELECT r.* ,u.username ,d.name FROM role r 
@@ -155,7 +156,20 @@
 		+-----+------------------+----------+------+----------+--------+
 		
 26.点击角色树种保存按钮的同时，更新table中相应的位置。
-	给响应的td做上标记
+	给响应的td做上标记，获取节点的那么，折折到td上。
+	
+27.对角色操作
+	列出所有的角色：list.jsp
+	
+28.处理列出的角色中没有权限的问题，“from Role r left join fetch r.privileges  ”	
+
+29.加载权限树，ajax获取所有的权限，加载出来.准备好权限的数据。对Privilege的roles加注解	@JSON(serialize=false)，表示在序列化为json格式时，忽略该成员。
+
+30.完成全选复选框的逻辑。给树的setting参数添加callback:{change:xxx};完成loading图片和树的隐藏及显示逻辑
+
+31.点击保存时，完成保存逻辑：需要获取rid，被选中节点的id，组成字符串，提交到后台；
+
+32.权限树的回显：先获取所有的权限树，然后再根据rid获取对应的权限，遍历所有的集合，给rid对应的权限的checked属性设置为true；
 
 
 	
