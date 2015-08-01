@@ -13,4 +13,5 @@
    <include file="struts2/struts-menuitem.xml"></include>
    <include file="struts2/struts-role.xml"></include>
    <include file="struts2/struts-privilege.xml"></include>
+   <include file="struts2/struts-forward.xml"></include>
 </struts>	

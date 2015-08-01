@@ -171,6 +171,10 @@
 
 32.权限树的回显：先获取所有的权限树，然后再根据rid获取对应的权限，遍历所有的集合，给rid对应的权限的checked属性设置为true；
 
+33.完成框架主页，index.jsp,frame/top.jsp,right.jsp....
+
+34.完成登陆：login.jsp
+
 
 	
 
