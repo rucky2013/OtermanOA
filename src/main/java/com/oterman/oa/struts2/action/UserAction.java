@@ -92,8 +92,6 @@ public class UserAction extends BaseAction<User>{
 	 */
 	public String add(){
 		User model = this.getModel();
-		Long did2=this.did;
-		Long[] dids=this.rids;
 		
 		this.userService.addUser(model,this.did,this.rids);
 	

@@ -1,6 +1,7 @@
 package com.oterman.oa.dao.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,22 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		queryString.append(" left outer join fetch u.roles ");
 		
 		return this.hibernateTemplate.find(queryString.toString());
+	}
+	
+	/**
+	 * 根据用户名和密码来查询用户；
+	 */
+	public User queryByCondition(User user) {
+		List list = this.hibernateTemplate.find("from User u where u.username=? and password=?",user.getUsername(),user.getPassword());
+		
+//		if(list.size()==0){
+//			return null;
+//		}else{
+//			return (User) list.get(0);
+//		}
+		
+		return list.size()==0?null:(User)list.get(0);
+				
 	}
 
 }

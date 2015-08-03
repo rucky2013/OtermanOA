@@ -2,6 +2,8 @@ package com.oterman.oa.service.base.impl;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,5 +49,6 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	public Collection<T> createQuery(String hql) {
 		return this.getBaseDao().createQuery(hql);
 	}
+	
 
 }

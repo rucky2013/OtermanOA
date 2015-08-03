@@ -14,4 +14,5 @@ public interface BaseService<T> {
 	public T getEleById(Serializable id);
 	
 	public Collection<T> createQuery(String hql);
+	
 }

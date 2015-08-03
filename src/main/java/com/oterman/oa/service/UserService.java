@@ -10,4 +10,6 @@ public interface UserService extends BaseService<User> {
 	
 	public void updateUserWithRoles(Long uid,Long[] rids);
 	
+	public User findUserByCondition(String username,String  password);
+	
 }

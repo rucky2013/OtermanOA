@@ -5,13 +5,16 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.oterman.oa.domain.Privilege;
+import com.oterman.oa.domain.User;
 import com.oterman.oa.service.PrivilegeService;
 import com.oterman.oa.service.RoleService;
+import com.oterman.oa.service.UserService;
 
 @Controller("privilegeAction")
 @Scope("prototype")
@@ -24,6 +27,9 @@ public class PrivilegeAction extends BaseAction<Privilege>{
 	
 	@Resource(name="roleService")
 	private RoleService  roleService;
+	
+	@Resource(name="userService")
+	private UserService userService;
 	
 	public Long getRid() {
 		return rid;
@@ -52,7 +58,6 @@ public class PrivilegeAction extends BaseAction<Privilege>{
 			}
 		}
 		
-		
 		ActionContext.getContext().getValueStack().push(list);
 		try {
 			Thread.sleep(2000l);
@@ -63,4 +68,17 @@ public class PrivilegeAction extends BaseAction<Privilege>{
 		return SUCCESS;
 	}
 
+	/**
+	 * 根据用户的id，获取用户下所有的可以访问到的菜单权限；
+	 * user对应多个role，role对应多个privilege
+	 * @return
+	 */
+	public String getMenuItemsByUid(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		User user2 = this.userService.getEleById(user.getUid());
+		
+		Collection<Privilege> list = privilegeService.getMenuItemsByUid(user2);
+		ActionContext.getContext().getValueStack().push(list);
+		return SUCCESS;
+	}
 }

@@ -14,7 +14,8 @@
 		<property name="type" length="20"></property>
 		<property name="icon"></property>
 		<property name="isParent" type="boolean"></property>
-		
+		<property name="url" length="100"></property>		
+		<property name="target" length="100"></property>
 		<set name="roles" table="role_privilege">
 			<key>
 				<column name="id"></column>

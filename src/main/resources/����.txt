@@ -173,7 +173,21 @@
 
 33.完成框架主页，index.jsp,frame/top.jsp,right.jsp....
 
-34.完成登陆：login.jsp
+34.完成登陆：login.jsp loginAction login方法，校验用户名和密码
+
+35.完成左边的菜单树的加载，不同的用户只能加载对应角色下的菜单树；
+	jquery-插件
+	jquery-plugin-ztree.js
+	oa-menuitem.js
+36.admin用户能够加载所有，给菜单树添加点击事件，Privilege： url,privige,  
+	用户查询：userAction_showAll.action
+	岗位查询：roleAction_listRolesUI.action
+	
+	
+
+	
+
+
 
 
 	

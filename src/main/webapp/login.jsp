@@ -17,7 +17,7 @@
                 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 width=100%>
                     <TR>
                         <TD width=45 CLASS="Subject"><IMG BORDER="0" SRC="${pageContext.request.contextPath}/css/blue/images/login/userId.gif" /></TD>
-                        <s:actionerror/>
+                        <span style="color: red"><s:actionerror/></span>
                         <s:property value="#login"/>
                         <TD><s:textfield name="username" cssClass="TextField"></s:textfield></TD>
                         <TD ROWSPAN="2" STYLE="padding-left:10px;"><INPUT TYPE="image" SRC="${pageContext.request.contextPath}/css/blue/images/login/userLogin_button.gif"/></TD>

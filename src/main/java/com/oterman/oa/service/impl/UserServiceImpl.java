@@ -1,6 +1,8 @@
 package com.oterman.oa.service.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -89,6 +91,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		
 		this.saveEntry(user);
 		
+	}
+
+	@Transactional(readOnly=true)
+	public User findUserByCondition(String username ,String password) {
+//		User user=new User();
+//		user.setUsername(username);
+//		user.setPassword(password);
+		
+		Map<String, Object> map=new HashMap();
+		map.put("username", username);
+		map.put("password", password);
+		
+		return this.userDao.queryByCondition(map);
 	}
 
 }

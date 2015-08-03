@@ -10,6 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
 </head>
+<!-- 加载树 -->
+<script type="text/javascript">
+
+</script>
 <body style="margin: 0">
 <TABLE border=0 width="700">
 	<TR>

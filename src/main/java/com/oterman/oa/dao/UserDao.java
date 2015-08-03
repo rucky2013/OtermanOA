@@ -8,5 +8,5 @@ import com.oterman.oa.domain.User;
  *
  */
 public interface UserDao extends BaseDao<User> {
-	
+	public User queryByCondition(User user);
 }

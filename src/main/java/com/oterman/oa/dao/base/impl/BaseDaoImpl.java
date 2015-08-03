@@ -2,10 +2,17 @@ package com.oterman.oa.dao.base.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.oterman.oa.dao.base.BaseDao;
@@ -62,6 +69,33 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	public Collection<T> createQuery(String hql) {
 		return this.hibernateTemplate.find(hql);
+	}
+
+	public T queryByCondition(final Map<String , Object> map) {
+		final StringBuffer queryString =new StringBuffer(" from "+entityClass.getSimpleName());
+		queryString.append(" where 1=1 " );
+		
+		for (Entry<String, Object> entry : map.entrySet()) {
+			queryString.append(" and "+entry.getKey()+"=:"+entry.getKey());
+		}
+		
+		
+		T t=this.hibernateTemplate.execute(new HibernateCallback<T>() {
+
+			public T doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				Query query = session.createQuery(queryString.toString());
+				
+				for (Entry<String, Object> entry: map.entrySet()) {
+					query.setParameter(entry.getKey(), entry.getValue());
+				}
+				
+				return (T) query.uniqueResult();
+				
+			}
+		});
+		
+		return t;
 	}
 
 }

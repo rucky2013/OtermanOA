@@ -9,8 +9,8 @@
 		</id>
 		<property name="username"></property>
 		<property name="sex"></property>
-		<property name="email"></property>
-		<property name="phone"></property>
+		<property name="email" length="100"></property>
+		<property name="phone" length="100"></property>
 		<property name="password"></property>
 		
 		
