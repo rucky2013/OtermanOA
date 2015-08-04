@@ -16,5 +16,10 @@ public interface PrivilegeDao extends BaseDao<Privilege> {
 	 * 根据用户的id，查找该用户下的所有的菜单节点；
 	 */
 	Collection<Privilege> getMenuItemsByUid(User user);
+
+	/**
+	 * 获取用户的功能权限；
+	 */
+	Collection<Privilege> getFunctionPrivilegesByUid(User user);
 	
 }

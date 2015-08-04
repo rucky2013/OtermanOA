@@ -30,13 +30,13 @@
 		</div>
 		
         <div id="Head1Right_SystemButton">
-            <a target="_parent" href="System_User/logout.html">
+            <a target="_parent" href="loginAction_logout.action">
 				<img width="78" height="20" alt="退出系统" src="${pageContext.request.contextPath}/css/blue/images/top/logout.gif" />
 			</a>
         </div>
 		
-        <div id="Head1Right_Button">
-            <a target="desktop" href="/desktop?method=show">
+        <div id="Head1Right_Button" style="display: none;">
+            <a target="desktop" href="/desktop?method=show" >
 				<img width="65" height="20" alt="显示桌面" src="${pageContext.request.contextPath}/css/blue/images/top/desktop.gif" />
 			</a>
         </div>

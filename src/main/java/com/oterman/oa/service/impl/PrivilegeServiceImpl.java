@@ -30,6 +30,12 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege> implements 
 	public Collection<Privilege> getMenuItemsByUid(User user) {
 		return this.privilegeDao.getMenuItemsByUid(user);
 	}
+
+	@Transactional(readOnly=true)
+	public Collection<Privilege> getFunctionPrivilegesByUid(User user) {
+		
+		return this.privilegeDao.getFunctionPrivilegesByUid(user);
+	}
 	
 
 }

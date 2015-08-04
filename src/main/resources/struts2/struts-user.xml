@@ -3,13 +3,12 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
-   <package name="user" extends="struts-default" namespace="/">
+   <package name="user" extends="oa_interceptor" namespace="/">
    		<action name="userAction_*" method="{1}" class="userAction">
    			<result name="listAction">WEB-INF/jsp/user/list.jsp</result>
    			<result name="addUI">WEB-INF/jsp/user/add.jsp</result>
    			<result name="action2action" type="redirectAction">userAction_showAll.action</result>
    			<result name="updateUI">WEB-INF/jsp/user/update.jsp</result>
-   			
    		</action>
    </package>
   

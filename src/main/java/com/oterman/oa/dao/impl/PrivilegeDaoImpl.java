@@ -72,11 +72,29 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 			buffer.append("from Privilege p");
 			buffer.append(" inner join fetch p.roles r");
 			buffer.append(" inner join fetch r.users u");
-			buffer.append(" where u.uid=? and p.type='1' ");
+			buffer.append(" where u.uid=? ");
 			list= this.hibernateTemplate.find(buffer.toString(),user.getUid());
 		}
 
 		return list;
+	}
+
+	public Collection<Privilege> getFunctionPrivilegesByUid(User user) {
+		StringBuffer buffer=new StringBuffer();
+		List list =null;
+		if("admin".equals(user.getUsername())){
+			buffer.append("from Privilege p where p.type='2'");//管理员查询所有的权限；
+			list=this.hibernateTemplate.find(buffer.toString());
+		}else{
+			buffer.append("from Privilege p");
+			buffer.append(" inner join fetch p.roles r");
+			buffer.append(" inner join fetch r.users u");
+			buffer.append(" where u.uid=? and p.type='2'");
+			list= this.hibernateTemplate.find(buffer.toString(),user.getUid());
+		}
+
+		return list;
+		
 	}
 	
 

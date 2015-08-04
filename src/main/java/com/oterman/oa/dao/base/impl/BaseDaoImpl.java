@@ -20,7 +20,6 @@ import com.oterman.oa.dao.base.BaseDao;
 /**
  * 公共接口的实现类，由于该类不能直接new对象，故可以设置为抽象的。
  * 该类实现了基本的增删改查操作；基于泛型技术；
- * 
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 	
@@ -81,7 +80,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		
 		
 		T t=this.hibernateTemplate.execute(new HibernateCallback<T>() {
-
 			public T doInHibernate(Session session) throws HibernateException,
 					SQLException {
 				Query query = session.createQuery(queryString.toString());
@@ -89,7 +87,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				for (Entry<String, Object> entry: map.entrySet()) {
 					query.setParameter(entry.getKey(), entry.getValue());
 				}
-				
 				return (T) query.uniqueResult();
 				
 			}

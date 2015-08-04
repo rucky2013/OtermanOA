@@ -14,4 +14,9 @@ public interface PrivilegeService extends BaseService<Privilege> {
 	 */
 	Collection<Privilege> getMenuItemsByUid(User user);
 	
+	/**
+	 * 获取用户所具有的功能权限；
+	 */
+	Collection<Privilege> getFunctionPrivilegesByUid(User user);
+	
 }

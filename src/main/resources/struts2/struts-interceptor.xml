@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+
+	<package name="oa_interceptor" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="privilegeInterceptor" class="com.oterman.oa.interceptor.PrivilegeInterceptor"></interceptor>
+			<interceptor-stack name="MyInterceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="MyInterceptor"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="error">error.jsp</result>
+		</global-results>
+	
+	</package>
+
+</struts>	
