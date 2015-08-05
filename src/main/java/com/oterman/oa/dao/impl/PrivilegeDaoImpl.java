@@ -66,13 +66,13 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 		System.out.println(new HashSet<User>(list).size());*/
 		List list =null;
 		if("admin".equals(user.getUsername())){
-			buffer.append("from Privilege");//管理员查询所有的权限；
+			buffer.append("from Privilege p where p.type='1' ");//管理员查询所有的权限；
 			list=this.hibernateTemplate.find(buffer.toString());
 		}else{
 			buffer.append("from Privilege p");
 			buffer.append(" inner join fetch p.roles r");
 			buffer.append(" inner join fetch r.users u");
-			buffer.append(" where u.uid=? ");
+			buffer.append(" where u.uid=? and p.type='1' ");
 			list= this.hibernateTemplate.find(buffer.toString(),user.getUid());
 		}
 
@@ -92,9 +92,7 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 			buffer.append(" where u.uid=? and p.type='2'");
 			list= this.hibernateTemplate.find(buffer.toString(),user.getUid());
 		}
-
 		return list;
-		
 	}
 	
 

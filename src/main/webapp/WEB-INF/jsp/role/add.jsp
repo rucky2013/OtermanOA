@@ -4,20 +4,19 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <html>
 <head>
-	<title>用户信息</title>
+	<title>角色添加</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
 
-<!-- 标题显示 -->
+<!-- 标题显示 --> 
 <div id="Title_bar">
     <div id="Title_bar_Head">
         <div id="Title_Head"></div>
         <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/css/images/title_arrow.gif"/> 用户信息
+            <img border="0" width="13" height="13" src="${pageContext.request.contextPath}/css/images/title_arrow.gif"/>添加角色
         </div>
         <div id="Title_End"></div>
     </div>
@@ -25,75 +24,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!--显示表单内容-->
 <div id=MainArea>
-    <s:form action="userAction_add.action">
-        <div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/css/blue/images/item_point.gif" /> 用户信息 </div> 
+    <s:form action="roleAction_add.action">
+        <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${pageContext.request.contextPath}/css/blue/images/item_point.gif" /> 部门信息 </DIV>  -->
         </div>
         
         <!-- 表单内容显示 -->
         <div class="ItemBlockBorder">
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
-                    <tr><td width="100">所属部门</td>
-                        <td>
-                        	<s:select list="#dList" 
-                        		listKey="did" 
-                        		listValue="name" 
-                        		cssClass="SelectStyle" 
-                        		headerValue="请选择部门" 
-                        		headerKey=""
-                        		
-                        		name="did"></s:select>
-                        	<%--<s:select list="#dList" listKey="did"  listValue="name" cssClass="SelectStyle" name="did"></s:select>
-                        --%></td>
+                    <tr><td>角色名称</td>
+                        <td><s:textfield name="name" cssClass="InputStyle"></s:textfield></td>
                     </tr>
-                    <tr><td>登录名</td>
-                        <td><s:textfield name="username" cssClass="InputStyle"></s:textfield>*
-							（登录名要唯一）
-						</td>
-                    </tr>
-					<tr><td>性别</td>
-                        <td>
-                        	<s:radio name="sex" list="{'男','女'}"/>
-						</td>
-                    </tr>
-					<tr><td>联系电话</td>
-                        <td><s:textfield name="phone" cssClass="InputStyle"></s:textfield></td>
-                    </tr>
-                    <tr><td>E-mail</td>
-                        <td><s:textfield name="email" cssClass="InputStyle"></s:textfield></td>
+                    <tr><td>角色描述</td>
+                        <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>
                     </tr>
                 </table>
             </div>
         </div>
         
-		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="${pageContext.request.contextPath}/css/blue/images/item_point.gif" /> 岗位设置 </div> 
-        </div>
-        
-        <!-- 表单内容显示 -->
-        <div class="ItemBlockBorder">
-            <div class="ItemBlock">
-                <table cellpadding="0" cellspacing="0" class="mainForm">
-                    <tr>
-						<td width="100">岗位</td>
-                        <td>
-                        	<%--<s:select list="#roleList" listKey="rid" listValue="name" name="rids" cssClass="SelectStyle" multiple="true"></s:select>
-                        	--%>
-                        	<s:select list="#rList" 
-                        		listKey="rid" 
-                        		listValue="name"
-                        		cssClass="SelectStyle"
-                        		multiple="true"
-                        		name="rids"
-                        	></s:select>
-                        
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>		
-		
         <!-- 表单操作 -->
         <div id="InputDetailBar">
             <input type="image" src="${pageContext.request.contextPath}/css/images/save.png"/>
@@ -101,6 +50,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </s:form>
 </div>
-
 </body>
 </html>

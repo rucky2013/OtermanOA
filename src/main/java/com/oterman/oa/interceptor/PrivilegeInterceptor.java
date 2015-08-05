@@ -60,7 +60,7 @@ public class PrivilegeInterceptor implements Interceptor {
 		if(flag){
 			return invocation.invoke();
 		}else{
-			ActionContext.getContext().getValueStack().push("不好意思，你不具备"+neededPrivilegeName+"权限，请联系俊哥。");
+			ActionContext.getContext().getValueStack().push("不好意思，你不具备"+neededPrivilegeName+"权限，请联系超级管理员。");
 			return "error";
 		}
 		

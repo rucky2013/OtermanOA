@@ -7,6 +7,9 @@
 		<action name="roleAction_*" method="{1}"  class="roleAction">
 			<result type="json"></result>
 			<result name="listRoles">WEB-INF/jsp/role/list.jsp</result>
+			<result name="addUI">WEB-INF/jsp/role/add.jsp</result>
+			<result name="updateUI">WEB-INF/jsp/role/update.jsp</result>
+			<result name="action2action" type="redirectAction">roleAction_listRolesUI.action</result>
 		</action>
 	</package>
 

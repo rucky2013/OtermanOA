@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-俊哥好帅哦
+
+<h1>欢迎来到大蘑菇办公自动化系统！</h1>
 </body>
 </html>

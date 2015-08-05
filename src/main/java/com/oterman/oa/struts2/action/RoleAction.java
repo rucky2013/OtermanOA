@@ -1,6 +1,7 @@
 package com.oterman.oa.struts2.action;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.oterman.oa.domain.Role;
+import com.oterman.oa.domain.User;
 import com.oterman.oa.service.RoleService;
 
 @Controller("roleAction")
@@ -55,7 +57,57 @@ public class RoleAction extends BaseAction<Role> {
 		}
 		return SUCCESS;
 	}
+	
+	
+	/**
+	 * 跳转到角色添加的ui上去；
+	 */
+	public String addUI(){
+		return "addUI";
+	}
+	
+	/**
+	 * 处理角色的添加逻辑；
+	 */
+	public String add(){
+		Role model = this.getModel();
+		this.roleService.saveEntry(model);
+		return "action2action";
+	}
+	
+	/**
+	 * 完成删除逻辑；
+	 */
+	public String delete(){
+		this.roleService.deleteEntry(this.getModel().getRid());
+		return "action2action";
+	}
+	
+	/**
+	 * 跳转到更新角色的页面；
+	 * 需要回显数据，根据id查询出role，push到值栈中；
+	 */
+	public String updateUI(){
+		Role role = this.roleService.getEleById(this.getModel().getRid());
+		ActionContext.getContext().getValueStack().push(role);
+		return "updateUI";
+	}
 
+	/**
+	 * 处理更新角色的逻辑；
+	 */
+	public String update(){
+		Role user= this.roleService.getEleById(this.getModel().getRid());
+		user.setName(this.getModel().getName());
+		user.setDescription(this.getModel().getDescription());
+		this.roleService.updateEntry(user);
+		
+		return "action2action";
+	}
+	
+	/**
+	 * 列出所有的角色；
+	 */
 	public String listRolesUI() {
 		Collection<Role> list = roleService.getAllRolesWithPrivilege();
 		ActionContext.getContext().put("list", new TreeSet<Role>(list));

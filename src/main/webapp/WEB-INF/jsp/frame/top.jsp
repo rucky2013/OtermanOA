@@ -58,7 +58,7 @@
 				</li>
                 <li class="Line"></li>
 				  <!-- 是否有待审批文档的提示1，数量 -->
-                <li><a href="Flow_Formflow/myTaskList.html" target="desktop">
+                <li><a href="javascript:void(0)" target="desktop">
                 		<img border="0" width="12" height="14" src="${pageContext.request.contextPath}/css/images/top/wait.gif" /> 
                 		待办事项（<span id="wait" class="taskListSize">1</span>）
                 	</a>

@@ -192,6 +192,14 @@
 	com.oterman.oa.intercptor
 		PrivilegeInterceptor
 		
+39.完善privilege表的设置；type=1,
+	getMenuitemPrivilege()的type设置为1
+	FunctionPrivilge()的type设置为2；
+40.完成角色的添加，删除，修改。
+	角色的添加，role add 
+	角色删除，获取id，根据id删除；
+
+		
 		
 
 	

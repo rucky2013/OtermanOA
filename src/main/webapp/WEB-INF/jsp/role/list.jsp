@@ -60,8 +60,8 @@
 								<s:property value="name" />
 							</s:iterator>
 						</td>
-						<td><s:a action="#">删除</s:a>
-							<s:a action="#">修改</s:a> 
+						<td><s:a action="roleAction_delete?rid=%{rid}">删除</s:a>
+							<s:a action="roleAction_updateUI?rid=%{rid}">修改</s:a> 
 							<a>权限修改</a>
 					</tr>
 				</s:iterator>
@@ -73,7 +73,7 @@
 		<!-- 其他功能超链接 -->
 		<div id="TableTail">
 			<div id="TableTail_inside">
-				<a href="#addUI.action"><img
+				<a href="roleAction_addUI.action"><img
 					src="${pageContext.request.contextPath}/css/images/createNew.png" />
 				</a>
 			</div>

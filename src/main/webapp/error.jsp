@@ -8,7 +8,7 @@
 </HEAD>
 
 <BODY LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 CLASS=PageBody >
-	<s:property/>
+	<h1><s:property/></h1>
 </BODY>
 
 </HTML>
