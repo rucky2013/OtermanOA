@@ -12,4 +12,6 @@ public interface UserService extends BaseService<User> {
 	
 	public User findUserByCondition(String username,String  password);
 	
+	public User findUserByUsername(String username);
+	
 }

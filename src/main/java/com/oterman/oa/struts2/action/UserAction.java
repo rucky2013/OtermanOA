@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -64,7 +65,8 @@ public class UserAction extends BaseAction<User>{
 	public void setRids(Long[] rids) {
 		this.rids = rids;
 	}
-	@PrivilegeInfo(privilege="用户查询")
+	
+	//@RequiresPermissions(value="用户查询")
 	public String showAll(){
 		Collection<User> list= this.userService.queryAll();
 		
@@ -75,7 +77,7 @@ public class UserAction extends BaseAction<User>{
 	/**
 	 * 跳转到add.jsp页面
 	 */
-	@PrivilegeInfo(privilege="用户增加")
+	//@RequiresPermissions(value="用户增加")
 	public String addUI(){
 		//查询department，role
 		Collection<Department> dList = this.departmentService.queryAll();
@@ -92,7 +94,7 @@ public class UserAction extends BaseAction<User>{
 	 * 处理表单提交
 	 * @return
 	 */
-	@PrivilegeInfo(privilege="用户增加")
+	//@RequiresPermissions(value="用户增加")
 	public String add(){
 		User model = this.getModel();
 		
@@ -104,7 +106,7 @@ public class UserAction extends BaseAction<User>{
 	/**
 	 * 跳转到更新页面，数据回显
 	 */
-	@PrivilegeInfo(privilege="用户修改")
+	//@RequiresPermissions(value="用户增加")
 	public String updateUI(){
 		User user = this.userService.getEleById(this.getModel().getUid());
 		this.did=user.getDepartment().getDid();
@@ -129,7 +131,7 @@ public class UserAction extends BaseAction<User>{
 	/**
 	 * 处理更新逻辑
 	 */
-	@PrivilegeInfo(privilege="用户修改")
+	//@RequiresPermissions(value="用户更新")
 	public String update(){
 		//user,did,rids
 		this.userService.updateUser(this.getModel(), did, rids);
@@ -141,7 +143,7 @@ public class UserAction extends BaseAction<User>{
 	 * 删除
 	 * @return
 	 */
-	@PrivilegeInfo(privilege="用户删除")
+	//@RequiresPermissions(value="用户删除")
 	public String delete(){
 		this.userService.deleteEntry(this.getModel().getUid());
 		

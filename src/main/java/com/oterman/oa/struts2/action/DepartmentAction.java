@@ -22,7 +22,8 @@ public class DepartmentAction extends BaseAction<Department> {
 	
 	@PrivilegeInfo(privilege="部门查询")
 	public String showAll(){
-		List<Department> list = (List<Department>) this.departmentSerivce.queryAll();
+//		List<Department> list = (List<Department>) this.departmentSerivce.queryAll();
+		List<Department> list = (List<Department>) this.departmentSerivce.getAllDepartment();
 		ServletActionContext.getContext().put("list", list);
 		return listAction;
 	}

@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
-   <package name="department" extends="oa_interceptor" namespace="/">
+   <package name="department" extends="struts-default" namespace="/">
    		<action name="departmentAction_*" method="{1}" class="departmentAction">
    			<result name="listAction">WEB-INF/jsp/department/list.jsp</result>
    			<result name="updateUI">WEB-INF/jsp/department/update.jsp</result>

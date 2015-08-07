@@ -198,8 +198,175 @@
 40.完成角色的添加，删除，修改。
 	角色的添加，role add 
 	角色删除，获取id，根据id删除；
-
+	
+41.添加shiro权限控制。
+	1.pom.xml:
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+	2.web.xml:
+	
+		<filter>
+			<filter-name>shiroSecurityFilter</filter-name>
+			<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>shiroSecurityFilter</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
 		
+	3.spring-shiro配置文件：
+	
+			<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+				<!--
+					在没有登录直接访问一个url时跳转到登录界面
+					在用户名为null，或者用户名密码错误的时候，跳转到登录页面
+				-->
+				<property name="loginUrl" value="/login.jsp"></property>
+				<property name="successUrl" value="/index.jsp"></property>
+				<!--
+					当访问一个没有获得授权的资源的时候，跳转到该页面
+				-->
+				<property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+				<property name="securityManager" ref="securityManager"></property>
+				<property name="filterChainDefinitions">
+					<value>
+						/login.jsp* = anon
+						/loginAction_login.action* = anon
+						/departmentAction_*.action* = perms["admin","aaa"]
+						/*.action* = authc
+					</value>
+				</property>
+			</bean>
+
+shiro完成登陆认证：
+
+		1、在web.xml文件中
+			<filter>
+				<filter-name>shiroSecurityFilter</filter-name>
+				<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+			</filter>
+			<filter-mapping>
+				<filter-name>shiroSecurityFilter</filter-name>
+				<url-pattern>/*</url-pattern>
+			</filter-mapping>
+		2、在pom.xml文件中
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-all</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+		3、在spring的配置文件中
+			<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+				<!--
+					在没有登录直接访问一个url时跳转到登录界面
+					在用户名为null，或者用户名密码错误的时候，跳转到登录页面
+				-->
+				<property name="loginUrl" value="/login.jsp"></property>
+				<property name="successUrl" value="/index.jsp"></property>
+				<!--
+					当访问一个没有获得授权的资源的时候，跳转到该页面
+				-->
+				<property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+				<property name="securityManager" ref="securityManager"></property>
+				<property name="filterChainDefinitions">
+					<value>
+						/login.jsp* = anon
+						/loginAction_login.action* = anon
+						/departmentAction_*.action* = perms["admin","aaa"]
+						/*.action* = authc
+					</value>
+				</property>
+			</bean>
+		4、写一个OARealm
+			public class OARealm extends AuthorizingRealm{
+				/**
+				 * 完成认证
+				 */
+				@Override
+				protected AuthenticationInfo doGetAuthenticationInfo(
+						AuthenticationToken token) throws AuthenticationException {
+					//得到含有username和password的token
+					UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken)token;
+					User user = this.loginService.login(usernamePasswordToken.getUsername());
+					if(user==null){
+						return null;
+					}else{
+						//把用户的信息封装到该对象中
+						AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user,user.getPassword(),getName());
+						return authenticationInfo;
+					}
+				}
+			}
+		5、完成spring的配置文件
+			<bean id="scurityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+				<property name="realm">
+					<ref bean="oaRealm"/>
+				</property>
+			</bean>
+			<bean id="oaRealm" class="com.itheima09.oa.shiro.OARealm"></bean>
+		6、编写LoginAction
+			@Controller("loginAction")
+			@Scope("prototype")
+			public class LoginAction extends BaseAction<User>{
+				public String login(){
+					Subject subject = SecurityUtils.getSubject();
+					UsernamePasswordToken token = new UsernamePasswordToken(
+								this.getModel().getUsername(),this.getModel().getPassword()
+							);
+					try{
+						subject.login(token);
+					}catch(UnknownAccountException e){
+						e.printStackTrace();
+						this.addActionError("该用户名不存在");
+						return INPUT;
+					}catch(AuthenticationException e){
+						e.printStackTrace();
+						this.addActionError("密码不对");
+						return INPUT;
+					}
+					return "index";
+				}
+			}
+		
+shiro完成方法级别校验：
+	1、在spring的配置文件中
+		<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
+		<bean
+			class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+			<property name="securityManager" ref="securityManager" />
+		</bean>
+	
+		<bean
+			class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+			depends-on="lifecycleBeanPostProcessor" />
+	2、在service层的某一个方法上添加注解
+		public class DepartmentServiceImpl{
+			@RequiresPermissions("showDepartment")
+			public Collection<Department> getAllDepartment() {
+				// TODO Auto-generated method stub
+				return this.departmentDao.getAllEntry();
+			}
+		}
+		说明：如果一个用户要访问该方法，必须拥有showDepartment
+	3、在OARealm中授权
+		/**
+		 * 完成授权
+		 */
+		@Override
+		protected AuthorizationInfo doGetAuthorizationInfo(
+				PrincipalCollection principals) {
+			SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+			authorizationInfo.addStringPermission("showDepartment");
+			return authorizationInfo;
+		}	
+		
+
+	
+	
 		
 
 	

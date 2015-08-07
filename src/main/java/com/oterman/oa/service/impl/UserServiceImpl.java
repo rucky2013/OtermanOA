@@ -39,7 +39,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public BaseDao<User> getBaseDao() {
 		return userDao;
 	}
-
+	
+	
 	/**
 	 * 处理添加逻辑
 	 */
@@ -95,13 +96,17 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Transactional(readOnly=true)
 	public User findUserByCondition(String username ,String password) {
-//		User user=new User();
-//		user.setUsername(username);
-//		user.setPassword(password);
 		
 		Map<String, Object> map=new HashMap();
 		map.put("username", username);
 		map.put("password", password);
+		
+		return this.userDao.queryByCondition(map);
+	}
+
+	public User findUserByUsername(String username) {
+		Map<String, Object> map=new HashMap();
+		map.put("username", username);
 		
 		return this.userDao.queryByCondition(map);
 	}
